@@ -96,8 +96,10 @@
   # Função de debug
   # ============================================
   _debug_log(){
-    [ "$debug" = 1 ] && _print_info "[DEBUG] $*"
-  }
+  if [ "$debug" = 1 ];then
+     _print_info "[DEBUG] $*"
+  fi
+}
 
   # ============================================
   # tratamento das exceções de interrupções
@@ -123,8 +125,8 @@
   # Descrição da 'funcao_dummy'
   # ============================================
   funcao_dummy(){
-    _print_info "Ola, meu nome eh testando.sh"
-    echo ""
+    _print_info "Ola, meu nome eh $nome_do_script"
+    echo
     _print_success "imprimindo mensagem de sucesso!"
     _print_error "imprimindo mensagem de erro!"
     _debug_log "mensagem de debug"
