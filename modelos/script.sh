@@ -108,6 +108,24 @@
     return "$ERRO"
   }
 
+  # ============================================
+  # Verificar se um pacote está instalado
+  # $1 --> nome do pacote que deseja verificar
+  # $2 --> mensagem de erro customizada (OPCIONAL)
+  # ============================================
+  _die(){
+    local package=$1
+    local custom_msg=$2
+
+    if ! type $package > /dev/null 2>&1;then
+      _print_error "$package is not installed"
+      if [ ! -z "$custom_msg" ];then
+        _print_error "$custom_msg"
+      fi
+      exit $ERRO
+    fi
+  }
+
 ################################################################################
 # Validações - regras de negocio até parametros
 
