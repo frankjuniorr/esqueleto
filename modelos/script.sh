@@ -96,9 +96,9 @@
   # Função de debug
   # ============================================
   _debug_log(){
-  if [ "$debug" = 1 ];then
-     _print_info "[DEBUG] $*"
-  fi
+    if [ "$debug" = 1 ];then
+       _print_info "[DEBUG] $*"
+    fi
 }
 
   # ============================================
@@ -117,11 +117,9 @@
     local package=$1
     local custom_msg=$2
 
-    if ! type $package > /dev/null 2>&1;then
+    if ! type $package > /dev/null 2>&1; then
       _print_error "$package is not installed"
-      if [ ! -z "$custom_msg" ];then
-        _print_error "$custom_msg"
-      fi
+      test ! -z "$custom_msg" && _print_error "$custom_msg"
       exit $ERRO
     fi
   }
